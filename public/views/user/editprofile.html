@@ -1,0 +1,344 @@
+<div class="page page-form">
+    <div class="row">
+
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>
+                    <span class="glyphicon glyphicon-th"></span>
+                    Edit Change Password Details
+                    </strong>
+                </div>
+                <div class="panel-body">
+                    <form   name="Change_Pass" 
+                            class="form-horizontal form-validation" 
+                            data-ng-submit="submitForm()">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="">Current Password</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input  type="password"
+                                        class="form-control"
+                                        name="cur_pass"
+                                        placeholder="Enter Current Password"
+                                        data-ng-model="newpass.cur_pass"
+                                        required
+                                        data-ng-minlength="5"
+                                        data-ng-maxlength="20">
+<span   class="text-danger"
+        ng-show="Change_Pass.cur_pass.$error.required && !Change_Pass.cur_pass.$pristine">
+
+        Current password is required.                                    
+
+</span>
+<span   class="text-danger" 
+        ng-show="Change_Pass.cur_pass.$error.minlength">
+        
+        Current password too short.                                    
+
+</span>
+
+<span   class="text-danger" 
+        ng-show="Change_Pass.cur_pass.$error.maxlength">
+        
+        Current password too short.                                    
+
+</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="">New Password</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input  type="password"
+                                        class="form-control"
+                                        name="new_pass"
+                                        placeholder="Enter New Password"
+                                        data-ng-model="newpass.new_pass"
+                                        required
+                                        data-ng-minlength="5"
+                                        data-ng-maxlength="20">
+<span   class="text-danger"
+        ng-show="Change_Pass.new_pass.$error.required && !Change_Pass.new_pass.$pristine">
+
+        New Password is required.                                    
+
+</span>
+<span   class="text-danger" 
+        ng-show="Change_Pass.new_pass.$error.minlength">
+
+        New password too short.                                    
+
+</span>
+<span   class="text-danger" 
+        ng-show="Change_Pass.new_pass.$error.maxlength">
+
+        New password too long.                                    
+
+</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="">Re-Type Password</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input  type="password"
+                                        class="form-control"
+                                        name="con_pass"
+                                        placeholder="Enter Re-Type Password"
+                                        data-ng-model="newpass.con_pass"
+                                        data-match="newpass.new_pass"
+                                        required
+                                        data-ng-minlength="5"
+                                        data-ng-maxlength="20">
+<span   class="text-danger"
+        ng-show="Change_Pass.con_pass.$error.required && !Change_Pass.con_pass.$pristine">
+
+        Confirm Password is required.                                    
+
+</span>
+<span   class="text-danger" 
+        ng-show="Change_Pass.con_pass.$error.match">
+        
+        Confirm Password do not match.                                    
+
+</span>
+<!-- <span   class="text-danger" 
+        ng-show="Change_Pass.con_pass.$error.minlength">
+        
+        Confirm Password too short.                                    
+
+</span> -->
+<span   class="text-danger" 
+        ng-show="Change_Pass.con_pass.$error.maxlength">
+        
+        Confirm Password too long.                                    
+
+</span>
+                            </div>
+                        </div>
+                        <button type="submit"
+                                ng-click="ChangePassword(newpass)"
+                                class="btn btn-primary btn-block btn-lg"
+                                data-ng-disabled="Change_Pass.$invalid">
+                                Update Password
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>        
+
+        <div class="col-md-7">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>
+                    <span class="glyphicon glyphicon-th"></span>
+                    Edit Profile Details
+                    </strong>
+                </div>
+                <div class="panel-body">
+                    <form   name="Profile_Edit" 
+                            class="form-horizontal form-validation" 
+                            data-ng-submit="submitForm()">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="">User Name</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input  type="text"
+                                        class="form-control"
+                                        name="username"
+                                        placeholder="Enter Username"
+                                        data-ng-model="user.username"
+                                        ng-pattern="/^[a-zA-Z ]*$/"
+                                        required
+                                        data-ng-minlength="2"
+                                        data-ng-maxlength="30">
+<span   class="text-danger"
+        ng-show="Profile_Edit.username.$error.required && !Profile_Edit.username.$pristine">
+
+        Username is required.                                    
+
+</span>
+<span   class="text-danger" 
+        ng-show="Profile_Edit.username.$error.pattern && !Profile_Edit.username.$pristine">
+        
+        Username should be alphabetic.                                    
+
+</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="">First Name</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input  type="text"
+                                        class="form-control"
+                                        name="first_name"
+                                        placeholder="Enter First-Name"
+                                        data-ng-model="user.first_name"
+                                        ng-pattern="/^[a-zA-Z ]*$/"
+                                        required
+                                        data-ng-minlength="2"
+                                        data-ng-maxlength="30">
+<span   class="text-danger"
+        ng-show="Profile_Edit.first_name.$error.required && !Profile_Edit.first_name.$pristine">
+
+        Firstname is required.
+
+</span>
+
+<span   class="text-danger"
+        ng-show="Profile_Edit.first_name.$error.pattern && !Profile_Edit.first_name.$pristine">
+    
+        Firstname should be alphabetic.
+
+</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="">Last Name</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input  type="text"
+                                        class="form-control"
+                                        name="last_name"
+                                        ng-pattern="/^[a-zA-Z ]*$/"
+                                        placeholder="Enter Last-Name"
+                                        data-ng-model="user.last_name"
+                                        required
+                                        data-ng-minlength="2"
+                                        data-ng-maxlength="30">
+<span   class="text-danger"
+        ng-show="Profile_Edit.last_name.$error.required && !Profile_Edit.last_name.$pristine">
+
+        Lastname is required.
+
+</span>
+
+<span   class="text-danger"
+        ng-show="Profile_Edit.last_name.$error.pattern && !Profile_Edit.last_name.$pristine">
+    
+        Lastname should be alphabetic.
+
+</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="">Email</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input type="email"
+                                       class="form-control"
+                                       data-ng-model="user.email"
+                                       ng-disabled="true"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="">Address</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input  type="text"
+                                        class="form-control"
+                                        name="address"
+                                        placeholder="Enter Address"
+                                        data-ng-model="user.address"
+                                        required
+                                        data-ng-minlength="2"
+                                        data-ng-maxlength="30">
+<span   class="text-danger"
+        ng-show="Profile_Edit.address.$error.required && !Profile_Edit.address.$pristine">
+
+        Address is required.
+
+</span>                                     
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="">Phone</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input  type="text"
+                                        class="form-control"
+                                        name="phone"
+                                        placeholder="Enter Phone"
+                                        data-ng-model="user.phone"
+                                        ng-pattern="/^[0-9+-]*$/"
+                                        required
+                                        data-ng-minlength="2"
+                                        data-ng-maxlength="30">
+<span   class="text-danger"
+        ng-show="Profile_Edit.phone.$error.required && !Profile_Edit.phone.$pristine">
+
+        Mobile number is required.
+
+</span>
+
+<span   class="text-danger"
+        ng-show="Profile_Edit.phone.$error.pattern && !Profile_Edit.phone.$pristine">
+    
+        Mobile number should be numeric.
+
+</span>
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                                ng-click="SubmitProfile(user)"
+                                class="btn btn-primary btn-block btn-lg"
+                                data-ng-disabled="Profile_Edit.$invalid">
+                                Update Profile
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>
+                    <span class="glyphicon glyphicon-th"></span>
+                        Update Profile Picture
+                    </strong>
+                </div>
+                <div class="panel-body">
+                    <form   name="Profile_Pic" 
+                            class="form-horizontal form-validation">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="">Profile</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input  type="file" 
+                                        file-model="myFile"
+                                        accept="image/*"/>
+                                <input  type="file" 
+                                        file-model="myFiles"
+                                        accept="image/*"/>
+                            </div>
+                        </div>
+                        <button type="submit"
+                                ng-click="uploadFile()"
+                                class="btn btn-primary btn-block btn-lg"
+                                data-ng-disabled="Profile_Pic.$invalid">
+                                Update Profile 
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

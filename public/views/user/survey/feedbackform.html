@@ -1,0 +1,96 @@
+<div class="page">
+    <section id="" class="panel panel-default">
+        <div ng-if="feedbackSubmitFlag" 
+             class="form-group message fadein fadeout">
+                <div class="alert alert-success  text-center">  
+                    <a href="" class="close" data-dismiss="alert"><i class="fa fa-check"></i></a>  
+                    <strong>{{msg}}</strong>  
+                </div>
+                <div class="text-center">
+                <button class="btn btn-w-md btn-gap-v btn-primary"
+                            ng-click="backsurvey()">
+                            <i class="fa fa-close">
+                            </i>Close 
+                </button>
+                </div>
+
+        </div>
+            <h3 ng-if="!feedbackSubmitFlag" class="text-center  bg-primary"> 
+                Feedback Survey
+            </h3>
+
+        <div ng-if="!DisplayFeedbackForm">
+            <div class="panel-body" ng-if="!feedbackSubmitFlag">
+
+                <div class="col-md-offset-1 col-sm-10">
+                    <form   name="form_question" 
+                            ng-if="!DisplayFeedbackFlag" 
+                            novalidate>
+                            
+                            <b>Rating Scale:</b>
+                            Poor - <i class="fa fa-star starrate"></i> 
+
+                            Fair - <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+
+                            Good - <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+
+                            Very good - <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+
+                            Excellent - <i class="fa fa-star starrate"></i> 
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                            
+                        <div ng-hide="FlagQuestion">
+                            <div class="fbList ovrFlwAuto">
+                                <ul>
+                                    <li ng-repeat="field in question">
+                                        <field-directive field="field">
+                                        </field-directive>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <p ng-show="question.length == 0">
+                                No record found.
+                            </p>
+
+                                
+                            <div class="color-danger">
+                                Note : <b> * </b>(star) question is required.
+                            </div> 
+                                <br>
+                                <center>      
+                                    <button class="btn btn-w-md btn-gap-v btn-primary"
+                                        ng-click="backsurvey()"
+                                        title="Back">
+                                        <i class="glyphicon glyphicon-chevron-left">
+                                        </i>
+                                        Back
+                                    </button>            
+                                    <button ng-show="question.length != 0" 
+                                            class="btn btn-w-md btn-gap-v btn-primary"
+                                            ng-disabled="form_question.$invalid"
+                                            ng-click="submit()">
+                                            Submit
+                                            <i class="glyphicon glyphicon-chevron-right">
+                                            </i>
+                                    </button>
+                                </center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+</div>
+
+    

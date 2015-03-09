@@ -1,0 +1,343 @@
+<section class="page-form-ele page">
+    <section class="panel panel-default">
+    <div class="panel-heading">
+        <strong>
+            <h3>
+            <span class="glyphicon glyphicon-th"></span> 
+            Create New Survey
+            </h3>
+        </strong>
+    </div>
+
+<div class="panel-body">
+    <div class="form-fields">
+        <div class="form-group editQ">
+
+            <form   name="form_surveycreate" 
+                    class="form-horizontal form-validation"  
+                    novalidate>
+                <fieldset>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <label for="">Survey Name : </label>
+                        </div>
+                        <div class="col-sm-5">
+                            <input  type="text" 
+                                    name="form-name" 
+                                    class="form-control"
+                                    ng-disabled="true" 
+                                    ng-model="Survey.survey_name"
+                                    size="50">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <label for="">Category Name : </label>
+                        </div>
+                        <div class="col-sm-5">
+                            <input  type="text" 
+                                    name="form-name" 
+                                    class="form-control"
+                                    ng-disabled="true" 
+                                    ng-model="Survey.category_id.category_name"
+                                    size="50">
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    <hr>
+
+    <div class="row">
+        <div class="col-sm-2" >
+            <h4>   Builder:  </h4>
+                <div ng-repeat="addField in addField.types">                            
+                        <button class="btn btn-w-md btn-gap-v btn-primary" 
+                                ng-model="addField.name"
+                                ng-click="addNewField(addField)">
+                                {{addField.value}}
+                        </button>
+                </div>
+        </div>
+<br>
+<br>
+    <section class="col-md-offset-2 col-sm-offset-3 thumbnail">
+        <div class="panel-body">
+            <p ng-show="question.length == 0">No fields added yet.</p>
+            <accordion close-others="oneAtATime" class="ui-accordion">
+                <accordion-group heading="{{field.field_title}}" 
+                                ng-repeat="field in question">
+                    <form   name="create_survey" 
+                            class="form-horizontal form-validation"
+                            action="updateField(field,field._id)">
+                        
+                        <div class="form-group dsplFlex">
+                            <div class="col-sm-3">
+                                <label  for="" 
+                                        class="col-md-offset-5">
+                                        Question Type :- 
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <b>{{field.field_type}}</b>
+                            </div>
+                        </div>
+
+                        <div class="form-group dsplFlex">
+                            <div class="col-sm-3">
+                                <label  for="" 
+                                        class="col-md-offset-5">
+                                        Question For :- 
+                                </label>
+                            </div>
+                        
+                            <div class="col-md-4">
+                                <span class="">
+                                <select ng-model="field.quesfor_id" 
+                                        class="form-control adlo selectbtnlogs"
+                                        required>
+                                        <option value="">
+                                            Select Question Category
+                                        </option>
+                                        
+                                    <option 
+                                        ng-repeat="QFC in quesFor track by QFC._id" 
+                                        value="{{QFC._id}}" 
+                                        ng-selected="QFC._id == field.quesfor_id">
+                                        {{QFC.subcategory_name}}
+                                    </option>
+                                </select>
+                                </span>
+                            </div>                            
+                        </div> 
+
+                        <div class="form-group dsplFlex">
+                            <div class="col-sm-3">
+                                <label for="" class="col-md-offset-5">
+                                    Question Title :- 
+                                </label>
+                            </div>
+                            <div class="col-sm-7">
+                                <textarea rows="4" cols="50"
+                                        class="form-control"
+                                        ng-model="field.field_title"
+                                        required >{{field.field_title}}
+                                </textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" ng-show="showAddOptions(field)">
+                            <div class="col-sm-3">
+                                <label for="" class="col-md-offset-5">
+                                     Options :- 
+                                </label>
+                            </div>
+                            
+                            <div class="col-sm-7">
+                                <button     class="btn btn-primary btn-sm
+                                            glyphicon glyphicon-plus" 
+                                            type="button" 
+                                            ng-click="addOption(field)">
+                                    AddOption
+                                </button>
+                        </div><br/><br/>
+                            
+                            <div    class="col-sm-7 col-sm-offset-3" 
+                                    ng-repeat="option in field.field_options">
+                                <input  type="text" 
+                                        ng-model="option.option_title" 
+                                        value="{{option.option_title}}" required/>
+                                       
+                                <button class="btn btn-danger btn-xs
+                                                glyphicon glyphicon-remove"
+                                        style="margin-top:-6px;" 
+                                        data-ng-click="deleteOption(field,option)">
+                                    Remove
+                                </button>
+                            </div>                               
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="" class="col-md-offset-5">
+                                     Require an Answer to This Question :
+                                </label>
+                            </div>
+                            <label class="col-sm-1">
+                                    <input  type="checkbox" 
+                                            ng-value="true" 
+                                            ng-model="field.field_required"/>
+                            </label>
+                        </div>
+                    </form>
+
+                    <div class="text-center">
+                            <button class="btn btn-primary btn-sm" 
+                                    ng-click="updateField(field,field._id)"
+                                    ng-disabled="create_survey.$invalid">
+                                    Update
+                            </button>
+                            <button class="btn btn-danger btn-sm" 
+                                    ng-click="deleteField(field._id)">
+                                    Delete
+                            </button>
+                    </div>
+                </accordion-group>
+            </accordion>
+        </div>
+    </section>
+<!-- <div class="col-md-offset-2 col-sm-offset-3">
+    <div class="thumbnail">
+        
+        <div class="caption">
+            
+                <p ng-show="question.length == 0">No fields added yet.</p>
+            
+        <ol>
+            <li ng-repeat="field in question">
+                <a ng-show="!show" ng-click="show = true">
+                    {{field.field_title}}
+                </a>
+                <button class="btn btn-success btn-sm" ng-show="show" ng-click="show = false">Hide</button>
+           
+            <div ng-show="show" class="panel panel-default">
+                          
+                    <form name="create_survey" class="form-horizontal form-validation"
+                            action="updateField(field,field._id)">
+                        
+                        <div class="form-group dsplFlex">
+                            <div class="col-sm-3">
+                                <label  for="" 
+                                        class="col-md-offset-5">
+                                        Question Type : 
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <b>{{field.field_type}}</b>
+                            </div>
+                        </div>
+
+                        <div class="form-group dsplFlex">
+                            <div class="col-sm-3">
+                                <label  for="" 
+                                        class="col-md-offset-5">
+                                        Question For : 
+                                </label>
+                            </div>
+                        
+                            <div class="col-md-4">
+                                <span class="ui-select selectHide">
+                                <select ng-model="field.quesfor_id" 
+                                        class="form-control adlo selectbtnlogs"
+                                        required>
+                                        <option value="">Select Question Category</option>
+                                        <option ng-repeat="QFC in quesFor track by QFC._id" value="{{QFC._id}}" ng-selected="QFC._id == field.quesfor_id">{{QFC.quesfor_name}}</option>
+                                </select>
+                                </span>
+                            </div>                            
+                        </div> 
+
+                        <div class="form-group dsplFlex">
+                            <div class="col-sm-3">
+                                <label for="" class="col-md-offset-5">
+                                    Question Title : 
+                                </label>
+                            </div>
+                            <div class="col-sm-7">
+                                <textarea rows="4" cols="50"
+                                        class="form-control"
+                                        ng-model="field.field_title"
+                                        required >{{field.field_title}}</textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" ng-show="showAddOptions(field)">
+                            <div class="col-sm-3">
+                                <label for="" class="col-md-offset-5">
+                                     Options : 
+                                </label>
+                            </div>
+                            
+                            <div class="col-sm-7">
+                                <button     class="btn btn-primary btn-sm
+                                            glyphicon glyphicon-plus" 
+                                            type="button" 
+                                            ng-click="addOption(field)">
+                                    AddOption
+                                </button>
+                            </div><br/><br/>
+                            
+                            <div class="col-sm-7 col-sm-offset-3" ng-repeat="option in field.field_options">
+                                    <input  type="text" 
+                                            ng-model="option.option_title" 
+                                            value="{{option.option_title}}" required/>
+                                           
+                                    <button class="btn btn-danger btn-xs
+                                                    glyphicon glyphicon-remove"
+                                            style="margin-top:-6px;" 
+                                            data-ng-click="deleteOption(field,option)">
+                                    Remove
+                                    </button>
+                            </div>
+                               
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="" class="col-md-offset-5">
+                                     Require an Answer to This Question :
+                                </label>
+                            </div>
+                            <label class="col-sm-1">
+                                    <input  type="checkbox" 
+                                            ng-value="true" 
+                                            ng-model="field.field_required"/>
+                            </label>
+                        </div>
+                    </form>
+
+                    <div class="text-center">
+                            <button class="btn btn-primary btn-sm" 
+                                    ng-click="updateField(field,field._id)"
+                                    ng-disabled="create_survey.$invalid">
+                                    Update
+                            </button>
+                            <button class="btn btn-danger btn-sm" 
+                                    ng-click="deleteField(field._id)">
+                                    Delete
+                            </button>
+                    </div>
+                    <br>
+            </div>
+                <hr/>
+            </li>
+        </ol>
+
+        </div>
+
+    </div>    
+</div> -->
+
+    <p class="text-center" ng-show="question.length != 0">
+            <button class="btn btn-primary btn-large right" 
+                    type="button"
+                    ng-click="backsurvey()">
+                    <i class="icon-arrow-left icon-white"></i>
+                     << Back to Create Mode
+            </button>
+            <button ng-click="preview()"
+                    class="btn btn-primary btn-large right">
+                    <i class="icon-arrow-left icon-white"></i> 
+                    Preview Question >>
+            </button>
+    </p>
+</div>  
+            
+              
+       
+ </div>
+<br><hr>
+        
+</div>
+</section>
+</section>

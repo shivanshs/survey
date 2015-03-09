@@ -1,0 +1,123 @@
+<div class="page page-dashboard">
+
+    <!-- stats -->
+    <div class="row">
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-success">
+                    <i class="fa fa-rocket"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">25 <span class="size-h4">%</span></p>
+                    <p class="text-muted"><span>Growth</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-info">
+                    <i class="fa fa-users"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">112</p>
+                    <p class="text-muted"><span>New users</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-warning">
+                    <i class="fa fa-dollar"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">4,550</p>
+                    <p class="text-muted"><span>Profit</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-xsm-6">
+            <div class="panel mini-box">
+                <span class="box-icon bg-danger">
+                    <i class="fa fa-shopping-cart"></i>
+                </span>
+                <div class="box-info">
+                    <p class="size-h2">262</p>
+                    <p class="text-muted"><span>Sales</span></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- end stats -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Data"></span></strong></div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-sm-3">
+                            <label for="">Survey Category : </label>
+                        </div>
+                        <div class="col-sm-5">
+                            <select ng-model="cat.category"
+                                    class="btn btn-primary dropdown-toggle" 
+                                    ng-options="cat.category_name for cat in category track by cat._id" 
+                                    ng-change="FindCategoryFeedbackData(cat.category._id)"
+                                    ng-required="false">
+                                <option value="" >
+                                <b>All Categories</b>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Bar Chart (Star Rating)</div>
+                <div class="panel-body">
+                    <highchart config="chartConfig_StarRate"></highchart>
+                </div>
+            </section>            
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Bar Chart ( Time )</div>
+                <div class="panel-body">
+                    <highchart config="chartConfig_Time"></highchart>
+                </div>
+            </section>            
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4"  ng-repeat="p in value"                       >
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Pie Chart</div>
+                <div class="panel-body">
+                    <highchart config="p"></highchart>
+                </div>
+            </section>              
+        </div>
+    </div>
+
+    <accordion close-others="oneAtATime" class="ui-accordion">
+        <accordion-group    heading="{{Text.SubcatNameF}}" 
+                            ng-repeat="Text in TextFieldArea">
+            <div class="panel-body" ng-repeat="title in Text.finalArray ">
+                <p><span class="dropcap-circle colored">{{title.TextTitleF[0]}}</span>
+                {{title.TextTitleF}}
+                </p>
+            </div>
+        </accordion-group>
+    </accordion>
+</div>
+  

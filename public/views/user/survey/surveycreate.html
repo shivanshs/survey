@@ -1,0 +1,69 @@
+<section class="page-form-ele page">
+    <section class="panel panel-default">
+    <div class="panel-heading">
+        <strong>
+            <h3>
+            <span class="glyphicon glyphicon-th"></span> 
+            Create a new Survey
+            </h3>
+        </strong>
+    </div>
+
+
+<div class="panel-body">
+    <div class="form-fields">
+        <div class="form-group">
+
+            <form   name="form_surveycreate" 
+                    class="form-horizontal form-validation" 
+                    data-ng-submit="SubmitSurvey(survey)"
+                    novalidate>
+                <fieldset>
+                    <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label for="">Survey Name : </label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input  type="text" 
+                                            name="surveyname"
+                                            class="form-control"
+                                            ng-model="survey.survey_name"
+                                            size="30"
+                                            required>
+                                </div>
+                    </div>
+                    <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label for="">Survey Category : </label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <select ng-model="survey.category"
+                                            class="btn btn-primary dropdown-toggle" 
+                                            ng-options="cat.category_name for cat in category track by cat._id" 
+                                            ng-required="true">
+                                        <option value="" >
+                                        <b>All Categories</b>
+                                        </option>
+                                    </select>
+                                </div>
+                    </div>
+                    <div class="form-group">
+                            <div class="col-sm-3">
+                            </div>
+                            <div class="col-sm-5">
+                               <button  class="btn btn-w-md btn-gap-v btn-primary"
+                                        ng-disabled="form_surveycreate.$invalid"
+                                        type="submit">
+                                    Submit
+                               </button>
+                            </div>
+                    </div>                    
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</section>
+</section>
+
+

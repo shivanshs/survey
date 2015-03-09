@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<HTML class="no-js">
+	<TITLE>My Apps</TITLE>
+	<HEAD http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<!-- Link File : .css -->
+		<meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!-- <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css"> -->
+        <!-- needs images, font... therefore can not be part of ui.css -->
+       <!--  <link rel="stylesheet" href="/assets/bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/assets/bower_components/weather-icons/css/weather-icons.min.css"> -->
+        <!-- end needs images -->
+        <!-- <link rel="stylesheet" href="/assets/styles/main.css">
+ -->
+		<!-- Script File: .js file -->
+ 		<script src="/services/vendor.js"></script>
+		<script src="/services/ui.js"></script> 
+		<script src="/services/myapp.js"></script>
+		<script src="/services/myapp_services.js"></script> 
+		<script src="/controllers/myapp_Controller.js"></script>
+
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <link rel="stylesheet" href="/assets/temp/css/bootstrap.css">
+        
+        <link rel="stylesheet" href="/assets/temp/css/animate.css">
+        <link rel="stylesheet" href="/assets/temp/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/assets/temp/css/slick.css">
+        <link rel="stylesheet" href="/assets/temp/js/rs-plugin/css/settings.css">
+
+        <link rel="stylesheet" href="/assets/temp/css/freeze.css">
+
+
+        <script type="text/javascript" src="/assets/temp/js/modernizr.custom.32033.js"></script>
+        
+        <link rel="stylesheet/less" href="/assets/temp/less/styles.less">
+        <link rel="stylesheet/less" href="/assets/temp/less/freeze.less" title="colors">
+
+	</HEAD>
+	<BODY data-ng-app="app" data-custom-background="" data-off-canvas-nav="">
+		<div><!--data-ng-controller="AppCtrl">  -->
+            <div data-ng-hide="isSpecificPage()" data-ng-cloak="">
+                <section data-ng-include=" 'views/home/header.html' ">
+                </section>                
+            </div>
+            <div class="">
+                <section data-ng-view="" id="content" class="" style="top: 0px;width:auto;left: 0px;"></section>
+            </div>
+            <aside data-ng-include=" 'views/home/nav.html' "></aside>
+        </div>		
+	</BODY>
+</HTML>

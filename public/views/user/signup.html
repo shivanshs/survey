@@ -1,0 +1,131 @@
+<div class="page-signup">
+
+    <div class="signin-header">
+        <div class="container text-center">
+            <section class="logo">
+                <a href="#/">{{main.brand}}</a>
+            </section>
+        </div>
+    </div>
+
+    <div class="signup-body">
+        <div class="container">
+            <div class="form-container">
+
+                <span class="line-thru"></span>
+
+                <section>
+                    <form class="form-horizontal" name="UserForm" novalidate>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                <input  type="text"
+                                        class="form-control"
+                                        placeholder="User name"
+                                        name="username"
+                                        ng-model="user.username"
+                                        required>
+                            </div>
+                            <div class="text-center">
+                                <span ng-show="UserForm.username.$dirty && UserForm.username.$error.required" class="text-danger">
+                                    <span ng-show="UserForm.username.$invalid">
+                                            Username is required.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input type="email"
+                                       class="form-control"
+                                       placeholder="Email"
+                                       name="email"
+                                       ng-model="user.email"
+                                       required>
+
+                            </div>
+                            <div class="text-center">
+                                <span ng-show="UserForm.email.$dirty && UserForm.email.$error.required" class="text-danger">
+                                    <span ng-show="UserForm.email.$invalid">Email is required.</span>
+                                </span>
+                                 <span ng-show="UserForm.email.$dirty && UserForm.$error.email" class="text-danger">
+                                    <span ng-show="UserForm.$error.email">Please enter valid email.</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-lock"></span>
+                                </span>
+                                <input type="password"
+                                       class="form-control"
+                                       placeholder="Password"
+                                       name="password"
+                                       ng-model="user.password"
+                                       ng-minlength='4'
+                                       ng-maxlength='15'
+                                       max="15"
+                                       required>
+                            </div>
+                            <div class="text-center">
+                               <span ng-show="UserForm.password.$dirty && UserForm.password.$error.required" class="text-danger">
+                                  <span ng-show="UserForm.password.$invalid">Password is required.</span>
+                                </span>
+                                <span   ng-show="UserForm.password.$error.minlength" 
+                                        class="text-danger">
+                                    Password is too short.
+                                </span>
+                                <span   ng-show="UserForm.password.$error.maxlength"
+                                        class="text-danger">
+                                    Password is too long.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-lock"></span>
+                                </span>
+                                <input type="password"
+                                       class="form-control"
+                                       placeholder="Re-Type Password"
+                                       name="rpassword"
+                                       ng-model="user.rpassword"
+                                       data-match="user.password"
+                                       required>
+                            </div>
+                            <div class="text-center">
+                               <span ng-show="UserForm.rpassword.$dirty && UserForm.rpassword.$error.required" class="text-danger">
+                                  <span ng-show="UserForm.rpassword.$invalid">Password is required.</span>
+                                </span>
+                                <span ng-show="UserForm.rpassword.$error.match" class="text-danger">Password do not match.</span>
+                                </span>
+                            </div>
+                        </div> 
+
+                        <div class="form-group">
+                            <p class="text-muted text-small">By clicking on Sign up, you agree to <a href="javascript:;">terms & conditions</a> and <a href="javascript:;">privacy policy</a></p>
+                            <div class="divider"></div>
+                            <a  href="" class="btn btn-primary btn-lg btn-block"
+                                ng-disabled="UserForm.$invalid"
+                                ng-click="Signup(user)">Sign up</a>
+                        </div>
+ 
+                    </form>
+                </section>
+
+                <section>
+                    <p class="text-center text-muted">Already have an account? 
+                    <a href="#/login" >Log in now</a></p>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>

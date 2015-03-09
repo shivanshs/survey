@@ -1,0 +1,21 @@
+<div class="">
+    <b class="">{{field.field_title}} 
+    <label 	class="required-error requiredstar" 
+    		ng-show="field.field_required && !field.field_value"
+    		>
+    		* 
+    </label>
+    </b>
+    
+    <div class="">
+        <div ng-repeat="option in field.field_options" class="ui-radio">
+            <label>
+                <input type="radio" value="{{option.option_value}}" ng-model="field.field_value"  ng-required="field.field_required" />
+                &nbsp;<span ng-bind="option.option_title"></span>
+            </label>
+
+        </div>
+        
+    </div>
+</div>
+<br>

@@ -1,0 +1,81 @@
+<section class="page-form-ele page">
+    <section class="panel panel-default">
+    <div class="panel-heading">
+        <strong>
+            <h3>
+            <span class="glyphicon glyphicon-th"></span> 
+                Assigned Survey
+            </h3>
+        </strong>
+    </div>
+
+<div class="panel-body" data-ng-controller="AssignSurveyCtrl">
+    <div class="form-fields">
+        <div class="form-group">
+
+            <form   name="form_assigned" 
+                    class="form-horizontal form-validation " 
+                    novalidate>
+                    <div class="form-group">
+                        <div class="col-sm-3 text-right">
+                            <label for="">Select Company : </label>
+                        </div>
+                        <div class="col-sm-4">
+                        <span class="ui-select selectHide">
+                        <select   ng-model="clinic._id" 
+                                  name="clinical"  
+                                  ng-options="c.clinic_name for c in clinic track by c._id"
+                                  ng-change = "getClinics(clinic._id)"
+                                  class="btn btn-default dropdown-toggle act200">
+                            <option value=""
+                                    class="dropdown-menu" 
+                                    role="menu">
+                                    Select
+                            </option>
+                        </select>
+                        </span>
+                        </div>
+                    </div>
+                        
+                <div ng-if="DisplaySurvey">
+                    <div class="col-sm-3 text-right">
+                    <label for="">Display Survey : </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label class="ui-checkbox">
+                            <input  type="checkbox" value="value" ng-checked="{{newValue}}" ng-model="newValue" 
+                                ng-click="SelectAll(newValue)"/>
+                            <span for="" class="checkboxbtn"></span>
+                            Select All
+                        </label>
+                    </div>
+                        <br/>
+                        <br>
+                         <div class="col-sm-3" ng-repeat="sur in survey">
+                            <label class="ui-checkbox">
+                                    <input  id="{{sur.survey_name}}" 
+                                            type="checkbox" value="{{sur._id}}" 
+                                            ng-checked="selection.indexOf(sur._id) > -1"
+                                            ng-click="toggleSelection(sur._id)"/>
+                                    <span ng-bind="sur.survey_name" class="checkboxbtn"></span>
+                           </label>
+                       </div>
+
+
+                   <br><br>
+                       <div class="clearfix"></div>
+                        <div class="col-md-offset-5">
+                            <button class="btn btn-w-md btn-gap-v btn-primary"
+                                    ng-click="SubmitAssignedSurvey(selection)">
+                                Submit
+                            </button>
+                       </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</section>
+</section>
+
+

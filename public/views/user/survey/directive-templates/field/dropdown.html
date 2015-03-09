@@ -1,0 +1,21 @@
+<div class="">
+    <b class="">{{field.field_title}} 
+    <label 	class="required-error requiredstar" 
+    		ng-show="field.field_required && !field.field_value" 
+    		>
+    		*
+    </label>
+    </b>
+		<select ng-model="field.field_value" 
+				ng-required="field.field_required"
+                class="form-control adlo selectbtnlogs">
+
+            <option value="">Select </option>
+			<option ng-repeat="option in field.field_options" 
+					ng-selected="option.option_value == field.field_value"
+					value="{{option.option_id}}">
+				{{option.option_title}}
+			</option>
+        </select> 
+</div>
+<br>

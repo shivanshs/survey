@@ -1,0 +1,26 @@
+ <div class="" data-ng-controller="CheckboxCtrl">
+ 
+    <b class="">{{field.field_title}}  
+     <label class="required-error requiredstar"
+            ng-show="Flag"
+            >
+            * 
+    </label>
+    </b>
+
+    <div class="" >
+        <div ng-repeat="option in field.field_options" class="">
+            <label class="ui-checkbox">
+                <input  type="checkbox"
+                        name="fields"
+                        value="{{option.option_value}}" 
+                        ng-model="option.field_value"  
+                        ng-required=""
+                        ng-click="click()"
+                        />
+
+                &nbsp;<span ng-bind="option.option_title"></span>
+            </label>
+        </div>
+    </div>
+</div> 

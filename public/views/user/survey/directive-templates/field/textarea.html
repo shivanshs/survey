@@ -1,0 +1,14 @@
+<div class="">
+    <b class="">{{field.field_title}}
+   		<label 	class="required-error requiredstar" 
+   				ng-show="field.field_required && !field.field_value"
+   				>
+   				* 
+   		</label>
+    </b>
+    <div class="">
+        <textarea type="text" ng-model="field.field_value" class="form-control" value="{{field.field_value}}" ng-required="field.field_required"></textarea>
+
+        
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div data-ng-controller="StarRatingCtrl">
+    <b>{{field.field_title}}
+        <label  class="required-error requiredstar" 
+                ng-show="field.field_required && !field.field_value"
+                >
+                *
+        </label>        
+    </b>
+    <rating class="ui-rating size-h3"
+            value="rate"
+            max="max"
+            readonly="isReadonly"
+            on-hover="hoveringOver(value)"
+            on-leave="overStar = null"
+            ng-click="selected(rate)"
+            state-on="'fa fa-star'"
+            state-off="'fa fa-star-o'">
+    </rating>
+    <span   class="label" 
+            ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" 
+            ng-show="overStar && !isReadonly">
+            {{percent}}%
+    </span>
+    {{field.field_value}}
+    <input  type="hidden" 
+            name="star" 
+            ng-model="field.field_value"
+            ng-required="field.field_required">    
+</div>

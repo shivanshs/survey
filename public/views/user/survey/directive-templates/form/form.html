@@ -1,0 +1,88 @@
+
+<!-- 
+<div ng-show="!form.submitted">
+     <div class="field row">
+        <div class="span2">Form ID:</div>
+        <div class="span4">{{ form.form_id }}</div>
+    </div> 
+    <form name="myForm" id="myForm">
+        <div ng-repeat="field in form.form_fields">
+            <field-directive field="field">
+
+            </field-directive>
+        </div>
+    </form>
+
+
+    <div class="form-actions">
+        <p class="text-center">
+            <button class="btn btn-success right" type="button" ng-click="submit()"><i class="icon-edit icon-white"></i> Submit Form</button>
+            <button class="btn btn-danger right" type="button" ng-click="cancel()"><i class="icon-remove icon-white"></i> Cancel</button>
+        </p>
+    </div>
+</div>
+
+<div ng-show="form.submitted">
+    <h3>Submitted Data</h3>
+    <div ng-repeat="field in form.form_fields">
+        Field Title: {{ field.field_title }} <br>
+        Field Value: {{ field.field_value }} <br><br>
+    </div>
+</div>
+
+ -->
+ <h2>{{ form.form_name }}</h2>
+
+<div class="panel-body" ng-show="!form.submitted">
+        <form role="form" class="ng-pristine ng-valid">
+            <ol>
+                <li class="form-group"
+                    ng-repeat="field in form.form_fields">
+                    
+                        <field-directive field="field" >
+                        </field-directive>
+                    
+                </li>
+            </ol>
+         
+            <div class="form-actions">
+                <p class="text-center">
+                    <button class="btn btn-success" 
+                            type="button" 
+                            ng-click="submit()">
+
+                            <i class="icon-edit icon-white"></i> 
+                            
+                            Submit Form
+
+                    </button>
+
+                 <!--    <button class="btn btn-danger" 
+                            type="button" 
+                            ng-click="cancel()">
+                            <i class="icon-remove icon-white"></i> 
+
+                            Cancel
+                    </button> -->
+                </p>
+            </div>
+        </form>      
+</div>
+
+<!-- <br>
+
+<div ng-show="form.submitted">
+    <h3>Submitted Data</h3>
+    <br>
+        <ol>
+            <li ng-repeat="field in form.form_fields">
+                <b>Question Title: </b>
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;{{ field.field_title }}
+            </li>
+        </ol>
+        <br>
+    </div>
+</div>
+
+ -->

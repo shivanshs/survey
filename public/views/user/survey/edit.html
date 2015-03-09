@@ -1,0 +1,282 @@
+<section class="page-form-ele page">
+    <section class="panel panel-default">
+    <div class="panel-heading">
+        <strong>
+            <h3>
+            <span class="glyphicon glyphicon-th"></span> 
+            Edit question
+            </h3>
+        </strong>
+    </div>
+
+<div class="panel-body" data-ng-controller="SurveyEditCtrl">
+    <div class="form-fields">
+        <div class="form-group editQ">
+
+            <form name="form_surveycreate" class="form-horizontal form-validation" novalidate>
+                <fieldset>
+                    <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label for="">Survey Name : </label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input  type="text" 
+                                            name="surname"
+                                            class="form-control" 
+                                            ng-disabled="SurveyNameFlag" 
+                                            ng-model="survey_name"
+                                            size="50">
+                                </div>
+
+                                <div class="col-sm-3 ">
+                                    <a href="" ng-if="SurveyNameFlag" 
+                                                ng-click="ChangeSurveyName()">
+                                        <i class="iconBlue fa fa-edit" ></i>
+                                    </a>
+                                    
+                                    <a href="" ng-if="!SurveyNameFlag" 
+                                                ng-click="UpdateSurveyName(survey_name,survey_id)" class="btn btn-primary">
+                                        Update
+                                    </a>
+                                </div>
+                    </div>
+                     <!-- <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label for="">Category Name : </label>
+                                </div>
+                                <div class="col-sm-9">
+                                    <input  type="text" 
+                                            name="form-name" 
+                                            ng-disabled="true" 
+                                            ng-model="category_name"
+                                            size="50">
+                                </div>
+                    </div> -->
+                    <div class="form-group">
+                                <div class="col-sm-3">
+                                    <label for="">Survey Category : </label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <span class="ui-select selectHide mrgl0">
+                                    <select ng-model="category.category_name" 
+                                            name="category_name"  
+                                            ng-options="c.category_name for c in category track by c._id"
+                                            class="btn btn-default dropdown-toggle act200"
+                                            ng-click
+                                            ng-change="FindCategoryData(category)"
+                                            required >
+                                            <span class="caret"></span> 
+                                                <option value="" 
+                                                        class="dropdown-menu" 
+                                                        role="menu">
+                                                    All Category
+                                                </option>
+                                    </select>
+                                    </span>
+                                   <!--  
+                                    <select ng-model="category" 
+                                            ng-options="cat.category_name for cat in category track by cat._id"
+                                            
+                                            ng-required="true">
+                                        <option value="">
+                                        </option>
+                                    </select> -->
+                                </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    <hr>
+
+    <div class="row">
+        <div class="col-sm-2" >
+
+            <h4>   Builder:  </h4>
+                            
+                    <div ng-repeat="addField in addField.types">
+                            
+                            <button class="btn btn-w-md btn-gap-v btn-primary" 
+                                    ng-model="addField.name"
+                                    ng-click="addNewField(addField)">
+                                    {{addField.value}}
+                            </button>
+
+                    </div>
+        </div>
+<br>
+<br>
+<div class="col-md-offset-2 col-sm-offset-3">
+    <div class="thumbnail">
+        
+        <div class="caption">
+        <p ng-show="question.length == 0">No fields added yet.</p>
+        <ol>
+
+            <li ng-repeat="field in question">
+                <a ng-show="!show" ng-click="show = true">
+                    {{field.field_title}}
+                </a>
+                <button class="btn btn-success btn-sm" ng-show="show" ng-click="show = false">Hide</button>
+           
+            <div ng-show="show" class="panel panel-default">
+                           
+                    <form name="edit_survey" class="form-horizontal form-validation">
+                        
+                        <div class="form-group dsplFlex">
+                            <div class="col-sm-3">
+                                <label  for="" 
+                                        class="col-md-offset-5">
+                                        Question Type : 
+                                </label>
+                            </div>
+                            <div class="col-sm-2">
+                                <b>{{field.field_type}}</b>
+                            </div>
+                        </div>
+
+                         <div class="form-group dsplFlex">
+                        <div class="col-sm-3">
+                                <label  for="" 
+                                        class="col-md-offset-5">
+                                        Question For : 
+                                </label>
+                            </div>
+
+                        <div class="col-md-4">
+                            <span class="ui-select selectHide">
+                            <select ng-model="field.quesfor_id" 
+                                                class="form-control adlo selectbtnlogs dropdown-toggle act200"
+                                                required>
+                                    <option value="">Select Question Category</option>
+                                    <option ng-repeat="QFC in quesFor track by QFC._id" value="{{QFC._id}}" ng-selected="QFC._id == field.quesfor_id">{{QFC.quesfor_name}}</option>
+                                </select>
+                                </span>
+                        </div>
+                        <!--     <div class="col-sm-3">
+                                  <select ng-model="field.quesfor_name" 
+                                            name="quesfor_name"  
+                                            ng-options="QFC.quesfor_name for QFC in quesFor track by QFC._id"
+                                            class="btn btn-default dropdown-toggle act200"
+                                            ng-selected="QFC._id==field.quesfor_id"
+                                            required>
+                                            <span class="caret"></span> 
+                                                <option value="" 
+                                                        class="dropdown-menu" 
+                                                        role="menu">
+                                                    Select Question Category
+                                                </option>
+                                    </select>
+                            </div> -->
+                        </div>
+
+
+                        <div class="form-group dsplFlexs">
+                            <div class="col-sm-3">
+                                <label for="" class="col-md-offset-5">
+                                    Question Title : 
+                                </label>
+                            </div>
+                            <div class="col-sm-7">
+                                <textarea rows="4" cols="50"
+                                        class="form-control"
+                                        ng-model="field.field_title"
+                                        required >{{field.field_title}}</textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" ng-show="showAddOptions(field)">
+                            <div class="col-sm-3">
+                                <label for="" class="col-md-offset-5">
+                                     Options : 
+                                </label>
+                            </div>
+                            
+                            <div class="col-sm-7">
+                                <button     class="btn btn-primary btn-sm
+                                            glyphicon glyphicon-plus" 
+                                            type="button" 
+                                            ng-click="addOption(field)">
+                                    AddOption
+                                </button>
+                            </div><br/><br/>
+                            
+                            <div class="col-sm-7 col-sm-offset-3" ng-repeat="option in field.field_options">
+                                    <input  type="text" 
+                                            ng-model="option.option_title" 
+                                            value="{{option.option_title}}" required/>
+                                           
+                                    <button class="btn btn-danger btn-xs
+                                                    glyphicon glyphicon-remove"
+                                            style="margin-top:-6px;" 
+                                            data-ng-click="deleteOption(field,option)">
+                                    Remove
+                                    </button>
+                            </div>
+                               
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="" class="col-md-offset-5">
+                                     Require an Answer to This Question :
+                                </label>
+                            </div>
+                            <label class="col-sm-1">
+                                    <input  type="checkbox" 
+                                            ng-value="true" 
+                                            ng-model="field.field_required"/>
+                            </label>
+                        </div>
+<!-- 
+                         <button    class="col-md-offset-5 btn btn-primary btn-sm" 
+                                    style="margin-top:-30px;"
+                                    ng-click="updateField(field,field._id)">
+                                    Update
+                        </button> -->
+
+                    </form>
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-sm" 
+                                    ng-click="updateField(field,field._id)"
+                                    ng-disabled="edit_survey.$invalid">
+                                    Update
+                            </button>
+                        <button class="btn btn-danger btn-sm" 
+                                ng-click="deleteField(field._id)">
+                                Delete
+                        </button>
+                    </div>
+                  <!--   <br/> -->
+                </div>
+                <hr/>
+                </li>
+            </ol>
+
+            </div>
+
+        </div>    
+    </div>
+
+    <p class="text-center" ng-show="question.length != 0">
+            <button class="btn btn-primary btn-large right" 
+                    type="button"
+                    ng-click="backsurvey()">
+                    <i class="icon-arrow-left icon-white"></i>
+                     << Back to Create Mode
+            </button>
+            <button ng-click="preview()"
+                    class="btn btn-primary btn-large right">
+                    <i class="icon-arrow-left icon-white"></i> 
+                    Preview Question >>
+            </button>
+    </p>
+</div>  
+            
+              
+       
+ </div>
+<br><hr>
+        
+</div>
+</section>
+</section>

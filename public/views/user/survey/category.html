@@ -1,0 +1,62 @@
+<div class="page page-form">
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>
+                    <span class="glyphicon glyphicon-th"></span>
+                    Add Categories
+                    </strong>
+                </div>
+                <div class="panel-body">
+                    <form   name="Category_form" 
+                            class="form-horizontal form-validation" 
+                            data-ng-submit="submitForm()">
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <label for="">Category Name:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <input  type="text"
+                                        class="form-control"
+                                        name="category_name"
+                                        placeholder="Enter Category Name"
+                                        data-ng-model="category.cat_name"
+                                        required
+                                        data-ng-minlength="2"
+                                        data-ng-maxlength="30">
+                                <span   class="text-danger"
+                                        ng-show="Category_form.category_name.$error.required && !Category_form.category_name.$pristine">
+                                        Category name is required.
+                                </span>
+                            </div>
+                        </div>                       
+
+                        <div class="text-center">
+                            <a  href="" 
+                                type="cancel"
+                                ng-click="back()"
+                                class="btn btn-primary btn-lg">
+                                    Back
+                            </a>
+                        <button type="submit"
+                                class="btn btn-primary btn-lg"
+                                ng-click="SubmitCategory(category)"
+                                data-ng-disabled="Category_form.$invalid">
+                                Add Category
+                        </button>
+                        </div>
+                     <!--    <button type="submit"
+                                ng-click="SubmitCategory(category)"
+                                class="btn btn-primary btn-block btn-lg"
+                                data-ng-disabled="Category_form.$invalid">
+                                Add Category
+                        </button> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

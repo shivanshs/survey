@@ -1,0 +1,67 @@
+<div class="page">
+    <section class="panel panel-default">
+
+            <h3 class="text-center  bg-primary"> 
+                Feedback Survey
+            </h3>
+
+            <div class="panel-body">
+                    <form   name="form_question" 
+                            novalidate>
+                            <b>Rating Scale:</b>
+                            Poor - <i class="fa fa-star starrate"></i> 
+
+                            Fair - <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+
+                            Good - <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+
+                            Very good - <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+
+                            Excellent - <i class="fa fa-star starrate"></i> 
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                            <i class="fa fa-star starrate"></i>
+                        
+                        <div ng-hide="FlagQuestion">
+                            <div class="fbList ovrFlwAuto">
+                                <ul>
+                                    <li ng-repeat="field in question">
+                                        <field-directive field="field">
+                                        </field-directive>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <p ng-show="question == 0">
+                                No record found.
+                            </p>
+                            <br>
+
+                            <div class="color-danger">
+                                    Note : * (star) question is required.
+                            </div> 
+
+                            <center>                                    
+                                <button class="btn btn-w-md btn-gap-v btn-primary"
+                                        ng-click="backsurvey()"
+                                        title="Back">
+                                        <i class="glyphicon glyphicon-chevron-left">
+                                        </i>
+                                        Back
+                                </button>
+                            </center>                                
+                        </div>                        
+                    </form>
+                </div>
+            </div>
+    </section>
+</div>
+
+    

@@ -1,0 +1,189 @@
+<section class="page-form-ele page">
+
+    <section class="panel panel-default table-dynamic">
+        <div class="panel-heading">
+            <strong>
+                <h3>
+                <span class="glyphicon glyphicon-th"></span> 
+                Survey Management 
+                </h3>
+            </strong>
+        </div>
+
+        <div class="table-filters">
+            <div class="row">
+                <div class="col-sm-4 col-xs-6">
+                    <form>
+                        <input type="text"
+                               placeholder="search"
+                               class="form-control"
+                               data-ng-model="searchKeywords"
+                               data-ng-keyup="search()">
+                    </form>
+                </div>
+                <div class="col-sm-4 col-xs-6 filter-result-info">
+                    <span>
+                        Showing  {{filteredStores.length}}/{{stores.length}} entries
+                    </span>              
+                </div>
+                <div class="col-sm-4 col-xs-6 filter-result-info">
+                    <span class="col-sm-1">
+                        <a  href="#/survey/create"
+                            class="btn btn-w-md btn-gap-v btn-primary">
+                            Create new survey
+                        </a>
+                    </span>              
+                </div>
+            </div>
+        </div>
+
+        <div class="ovrFlwAuto">
+        <table class="table table-bordered table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th><div class="th">
+                       <label for="">Survey Name</label>
+                        <span class="glyphicon glyphicon-chevron-up"
+                              data-ng-click=" order('-survey_name') "
+                              data-ng-class="{active: row == '-survey_name'}">
+                        </span>
+                        <span class="glyphicon glyphicon-chevron-down"
+                              data-ng-click=" order('survey_name') "
+                              data-ng-class="{active: row == 'survey_name'}">
+                        </span>
+                    </div>
+                    </th>
+                    <th><div class="th">
+                       <label for="">Catgeory Name</label>
+                        <span class="glyphicon glyphicon-chevron-up"
+                              data-ng-click=" order('-category_id.category_name') "
+                              data-ng-class="{active: row == '-category_id.category_name'}">
+                        </span>
+                        <span class="glyphicon glyphicon-chevron-down"
+                              data-ng-click=" order('category_id.category_name') "
+                              data-ng-class="{active: row == 'category_id.category_name'}">
+                        </span>
+                    </div>
+                    </th>
+                    
+                    <th><div class="th">
+                        <center>Status</center>
+                    </div></th>
+
+                    <th><div class="th">
+                        <center>Created Date</center>
+                    </div></th>
+
+                    <th><div class="th">
+                        <center>Modified Date</center>
+                    </div></th>
+
+                    <th><div class="th">
+                       <center>Action</center> 
+                    </div></th>
+
+                    <th><div class="th">
+                        <center>Copy Survey</center>
+                    </div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="s in currentPageStores">
+                    <td>{{s.survey_name}}</td>
+                    <td>{{s.category_id.category_name}}</td>
+                    <td><center>
+                        <img    ng-src="../assets/images/active.png"  
+                                ng-show="s.survey_status" 
+                                class="btn" 
+                                ng-click="updateStatus(s._id,false)" 
+                                title="Deativate"/>
+                        <img    ng-src="../assets/images/deactive.png"  
+                                ng-show="!s.survey_status" 
+                                class="btn" 
+                                ng-click="updateStatus(s._id,true)" 
+                                title="Activate"/>
+                        </center>                        
+                    </td>
+                    
+                    <td>{{s.created_date | date:'MM/dd/yyyy h:mma'}}</td>
+
+                    <td>{{s.modified_date | date:'MM/dd/yyyy h:mma'}}</td>
+                    
+                    <td>
+                    <center>
+                        <a  href="#/survey/edit/{{s._id}}/{{s.category_id._id}}"  
+                            class="btn iconBlue btn-lg fa fa-edit" 
+                            title="Edit" 
+                            alt="Edit">
+                        </a>
+
+                        <a  href="" 
+                            data-ng-click="removeSurvey(s._id)"
+                            title="Remove"
+                            alt="Remove"
+                            class="btn iconRed btn-lg fa fa-trash-o">
+                        </a>
+
+                        <a  href="#/survey/preview/{{s._id}}/{{s.category_id._id}}"
+                            class="btn iconBlue btn-lg glyphicon glyphicon-zoom-in"
+                            title="Preview"
+                            alt="Preview">
+                             <i class=""></i>
+                        </a>
+
+                        <a  href="#/survey/start/{{s._id}}/{{s.category_id._id}}"
+                            class="btn iconBlue btn-lg fa fa-caret-square-o-right"
+                            title="Start"
+                            alt="Start">
+                        </a>   
+
+                        <a  href=""
+                            ng-click="FeedbackLink(s._id,s.category_id._id,s.user_id)"
+                            class="btn iconBlue btn-lg fa fa-external-link"
+                            title="Survey Link"
+                            alt="Survey Link">
+                        </a>                      
+                    </center>
+                    </td>
+                    
+                    <td><center>
+                        <a  href=""
+                            title="copy survey"
+                            class="btn iconBlue btn-lg"
+                            ng-click="copy(s._id,$event)"><i class="fa fa-copy"></i>
+                        </a>
+                        </center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <footer class="table-footer">
+            <div class="row">
+                <div class="col-md-6 page-num-info">
+                    <span>
+                        Show 
+                        <select data-ng-model="numPerPage"
+                                data-ng-options="num for num in numPerPageOpt"
+                                data-ng-change="onNumPerPageChange()">
+                        </select> 
+                        entries per page
+                    </span>
+                </div>
+                <div class="col-md-6 text-right pagination-container">
+                    <pagination class="pagination-sm"
+                                page="currentPage"
+                                total-items="filteredStores.length"
+                                max-size="4"
+                                on-select-page="select(page)"
+                                items-per-page="numPerPage"
+                                rotate="false"
+                                boundary-links="true">
+                    </pagination>
+                </div>
+            </div>
+        </footer>
+    </section>
+</section>
+

@@ -1,0 +1,27 @@
+<div class="" data-ng-controller="DateCtrl">
+    <b class="">{{field.field_title}} 
+    <label  class="required-error requiredstar" 
+            ng-show="field.field_required && !field.field_value" 
+            >
+            *
+    </label>
+    </b>
+    <br/>
+    Time Format- HH:MM
+
+    <form   name="timeform" class="">
+        <div class="form-group">
+            <timepicker ng-model="time.value" 
+                        hour-step="hstep" 
+                        minute-step="mstep"
+                        ng-change="change(time.value)"
+                        show-meridian="ismeridian">
+            </timepicker>
+            <input  type="hidden" 
+                    ng-model="field.field_value" 
+                    value="field.field_value"
+                    name="value"
+                    required="field.field_required">
+        </div>   
+    </form>
+</div> 

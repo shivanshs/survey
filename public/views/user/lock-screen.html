@@ -1,0 +1,27 @@
+<div class="page page-lock">
+
+    <div class="lock-centered clearfix">
+        <div class="lock-container">
+            <!-- <div ui-time class="lock-time"></div> -->
+            
+            <section class="lock-box">
+                <div class="lock-user">{{main.name}}Amit Borkar</div>
+                <div class="lock-img"><img src="favicon.ico" alt=""></div>
+                <div class="lock-pwd">
+                    <form name="LockForm" novalidate>
+                        <div class="form-group">
+                            <input  type="password" 
+                                    placeholder="Password"
+                                    name="password"
+                                    ng-model="user.password" 
+                                    class="form-control">
+                            <a href="" ng-click="SubmitPassword(user)" class="btn-submit">
+                                <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </form>
+                </div>            
+            </section>
+        </div>
+    </div>
+</div>
